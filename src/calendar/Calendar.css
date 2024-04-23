@@ -1,0 +1,141 @@
+.calendar {
+  width: 100%;
+  font-family: Roboto, Helvetica, sans-serif;
+}
+
+.calendar-header {
+  text-align: center;
+  border-bottom: 1px solid rgb(157, 155, 155);
+}
+
+.calendar-header h3 {
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 335px;
+  margin: 20px auto;
+  border: 1px solid rgb(162, 162, 162);
+  border-radius: 7px;
+  border-spacing: 0;
+  /* border-collapse: collapse; */
+  color: rgb(216, 204, 204);
+}
+
+.calendar-day {
+  position: relative;
+  display: block;
+  border: 1px solid gray;
+  /* height: 57px; */
+  aspect-ratio: 1/1;
+  flex: 1 1;
+  padding: 0;
+  margin: 0;
+}
+
+th {
+  justify-content: center;
+  color: black;
+  font-size: 12px;
+  border-bottom: 1px solid rgb(113, 112, 112);
+}
+
+th,
+tr {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.calendar-day p {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+
+.current-month {
+  color: black;
+}
+
+.current-day p {
+  background-color: rgb(57, 71, 221);
+  color: white;
+  border-radius: 50px;
+  padding: 1.2px 1.8px 1.2px;
+}
+
+#selected {
+  background-color: rgb(181, 181, 207);
+}
+
+.calendar-event {
+  position: absolute;
+  bottom: 20%;
+  right: -2px;
+  height: 5px;
+  width: calc(100% + 2px);
+  background-color: rgb(52, 52, 184);
+  border: 2px solid rgb(52, 52, 184);
+  z-index: 5;
+}
+
+.calendar-event-start {
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.calendar-event-end {
+  left: 0;
+}
+
+/* .not-current-month .calendar-event {
+  background-color: rgb(160, 160, 231);
+  border: 2px solid rgb(160, 160, 231);
+} */
+
+.no-borders {
+  border-right-color: transparent;
+  border-left-color: transparent;
+  background-color: #f2f2f2 !important;
+}
+
+.layover-event {
+  position: absolute;
+  bottom: 20%;
+  right: -2px;
+  height: 5px;
+  background-color: rgb(121, 175, 237);
+  border: 2px solid rgb(121, 175, 237);
+  z-index: 6;
+}
+
+.layover-event-start {
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.layover-event-end {
+  left: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.rest-event {
+  position: absolute;
+  bottom: 20%;
+  height: 5px;
+  background-color: #fff;
+  border: 1px solid rgb(52, 52, 184);
+  z-index: 100;
+}
+
+.rest-event-end {
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}

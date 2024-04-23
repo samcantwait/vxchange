@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="5.6623611mm"
+   height="8.9646921mm"
+   viewBox="0 0 5.6623611 8.9646921"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="trip.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0485265"
+     inkscape:cx="59.555004"
+     inkscape:cy="92.505518"
+     inkscape:window-width="1080"
+     inkscape:window-height="1849"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1">
+    <pattern
+       id="EMFhbasepattern"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+    <pattern
+       id="EMFhbasepattern-7"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(21.028482,-47.627584)">
+    <g
+       id="g1"
+       transform="matrix(1,0,0,0.97183099,0,1.5795956)"
+       style="fill:#ffffff;stroke-width:1.01439">
+      <rect
+         style="fill:#ffffff;stroke:none;stroke-width:9.53526;stroke-linecap:round;stroke-dasharray:none;paint-order:markers stroke fill"
+         id="rect1"
+         width="5.6623611"
+         height="5.6623616"
+         x="-21.028482"
+         y="50.122932"
+         ry="0.6549949"
+         rx="0.82195657" />
+      <circle
+         style="fill:#ffffff;stroke:none;stroke-width:9.53527;stroke-linecap:round;stroke-dasharray:none;paint-order:markers stroke fill"
+         id="path1"
+         cx="-17.101358"
+         cy="56.150608"
+         r="0.45664206" />
+      <circle
+         style="fill:#ffffff;stroke:none;stroke-width:9.53527;stroke-linecap:round;stroke-dasharray:none;paint-order:markers stroke fill"
+         id="circle1"
+         cx="-19.384569"
+         cy="56.150608"
+         r="0.45664206" />
+      <rect
+         style="fill:none;stroke:#ffffff;stroke-width:0.405756;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         id="rect2"
+         width="1.6439115"
+         height="3.1951709"
+         x="-19.019258"
+         y="47.58559"
+         rx="0.36531365"
+         ry="0.56385368" />
+    </g>
+  </g>
+</svg>
