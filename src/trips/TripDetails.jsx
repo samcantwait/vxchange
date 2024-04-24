@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export default function TripDetails({ trip, changeTrip }) {
   const [checked, setChecked] = useState(false);
-  const [startMonth, startDay, startYear] = trip.startDate
+  const [startMonth, startDay] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");
-  const [endMonth, endDay, endYear] = trip.endDate
+  const [endMonth, endDay] = trip.endDate
     ? trip.endDate.split("-")
     : trip.arrivalDate.split("-");
 
@@ -19,7 +19,6 @@ export default function TripDetails({ trip, changeTrip }) {
     }
   }
 
-  // console.log(checked);
   return (
     <div
       className={
@@ -50,8 +49,9 @@ export default function TripDetails({ trip, changeTrip }) {
       <div className="trip-info">
         <div className="trip-dates">
           {months[startMonth - 1]} {startDay}
-          {trip.departure ? ` ${trip.departure}` : ""} - {months[endMonth - 1]}{" "}
-          {endDay} {trip.length ? `(${trip.length}d)` : trip.arrival}
+          {trip.report ? ` ${trip.report}` : ""} - {months[endMonth - 1]}{" "}
+          {endDay} {trip.release}{" "}
+          {trip.length ? `(${trip.length}d)` : trip.arrival}
         </div>
         <div className="details-wrapper">
           <div className="trip-id">

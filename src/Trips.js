@@ -428,4 +428,14 @@ const trips = [
   },
 ];
 
+trips.sort((a, b) => {
+  const aDate = parseInt(a.startDate.replaceAll("-", ""));
+  const bDate = parseInt(b.startDate.replaceAll("-", ""));
+  if (aDate !== bDate) return aDate - bDate;
+  else
+    return (
+      parseInt(a.report.replace(":", "")) - parseInt(b.report.replace(":", ""))
+    );
+});
+
 export { trips };

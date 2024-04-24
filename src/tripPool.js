@@ -1,11 +1,11 @@
 const monthNow = new Date().getMonth() + 1;
 
-export const tripPool = [
+const tripPool = [
   {
     id: 45177,
     startDate: `${monthNow}-01-2024`,
     endDate: `${monthNow}-01-2024`,
-    report: "07:15",
+    report: "09:15",
     release: "16:09",
     length: 1,
     creditTFP: 7,
@@ -398,3 +398,15 @@ export const tripPool = [
     base: "SFO",
   },
 ];
+
+tripPool.sort((a, b) => {
+  const aDate = parseInt(a.startDate.replaceAll("-", ""));
+  const bDate = parseInt(b.startDate.replaceAll("-", ""));
+  if (aDate !== bDate) return aDate - bDate;
+  else
+    return (
+      parseInt(a.report.replace(":", "")) - parseInt(b.report.replace(":", ""))
+    );
+});
+
+export { tripPool };
