@@ -2,6 +2,50 @@ const monthNow = new Date().getMonth() + 1;
 
 const trips = [
   {
+    id: 45177,
+    startDate: `${monthNow}-01-2024`,
+    endDate: `${monthNow}-01-2024`,
+    report: "07:15",
+    release: "16:09",
+    length: 1,
+    creditTFP: 7,
+    blockFAR: "06:29",
+    TAFB: "08:51",
+    totalDuty: "08:51",
+    flights: [
+      {
+        flightNo: 843,
+        departureAirport: "SFO",
+        arrivalAirport: "SJD",
+        departureDate: `${monthNow}-01-2024`,
+        arrivalDate: `${monthNow}-01-2024`,
+        departure: "08:15",
+        arrival: "11:24",
+        blockTime: "03:09",
+      },
+      {
+        flightNo: 379,
+        departureAirport: "SJD",
+        arrivalAirport: "SFO",
+        departureDate: `${monthNow}-01-2024`,
+        arrivalDate: `${monthNow}-01-2024`,
+        departure: "12:34",
+        arrival: "15:54",
+        blockTime: "03:20",
+      },
+    ],
+    layovers: [],
+    restEnd: {
+      startDate: `${monthNow}-01-2024`,
+      endDate: `${monthNow}-01-2024`,
+      startTime: "16:09",
+      endTime: "00:09",
+    },
+    selected: false,
+    position: "FA",
+    base: "SFO",
+  },
+  {
     id: 45109,
     startDate: `${monthNow}-07-2024`,
     endDate: `${monthNow}-08-2024`,
@@ -10,6 +54,8 @@ const trips = [
     length: 2,
     creditTFP: 10,
     blockFAR: "08:33",
+    TAFB: "28:03",
+    totalDuty: "12:28",
     flights: [
       {
         flightNo: 12345,
@@ -71,6 +117,8 @@ const trips = [
     length: 2,
     creditTFP: 12.8,
     blockFAR: "11:09",
+    TAFB: "28:12",
+    totalDuty: "13:24",
     flights: [
       {
         flightNo: 12345,
@@ -122,6 +170,8 @@ const trips = [
     length: 2,
     creditTFP: 13,
     blockFAR: "11:21",
+    TAFB: "37:36",
+    totalDuty: "13:36",
     flights: [
       {
         flightNo: 12345,
@@ -173,6 +223,8 @@ const trips = [
     length: 2,
     creditTFP: 13.6,
     blockFAR: "12:08",
+    TAFB: "37:35",
+    totalDuty: "14:23",
     flights: [
       {
         flightNo: 12345,
@@ -224,6 +276,8 @@ const trips = [
     length: 2,
     creditTFP: 10.8,
     blockFAR: "09:22",
+    TAFB: "29:57",
+    totalDuty: "11:37",
     flights: [
       {
         flightNo: 12345,
@@ -275,6 +329,8 @@ const trips = [
     length: 2,
     creditTFP: 13,
     blockFAR: "11:14",
+    TAFB: "37:29",
+    totalDuty: "13:29",
     flights: [
       {
         flightNo: 12345,
@@ -326,6 +382,8 @@ const trips = [
     length: 2,
     creditTFP: 13.8,
     blockFAR: "12:13",
+    TAFB: "32:16",
+    totalDuty: "34:41",
     flights: [
       {
         flightNo: 12345,

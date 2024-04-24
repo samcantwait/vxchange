@@ -15,9 +15,7 @@ export default function Calendar({ allTrips, onSelectTrip }) {
   );
 
   const tripDates = getTripDates(allTrips);
-
   console.log(tripDates);
-
   return (
     <>
       <div className="calendar">

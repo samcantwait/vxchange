@@ -1,4 +1,7 @@
-export default function TripDetails({ trip }) {
+import { useState } from "react";
+
+export default function TripDetails({ trip, changeTrip }) {
+  const [checked, setChecked] = useState(false);
   const [startMonth, startDay, startYear] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");
@@ -6,6 +9,17 @@ export default function TripDetails({ trip }) {
     ? trip.endDate.split("-")
     : trip.arrivalDate.split("-");
 
+  function handleClick(e) {
+    if (trip.id) {
+      console.log(e);
+      e.stopPropagation();
+      setChecked((c) => !c);
+
+      changeTrip(trip);
+    }
+  }
+
+  // console.log(checked);
   return (
     <div
       className={
@@ -15,10 +29,15 @@ export default function TripDetails({ trip }) {
       }
     >
       <div className="select-wrapper">
-        <div className={trip.location ? "trip-select layover" : "trip-select"}>
-          {trip.id && (
+        <div
+          className={trip.location ? "trip-select layover" : "trip-select"}
+          onClick={(e) => handleClick(e)}
+        >
+          {trip.id && !checked ? (
             <img src="../public/trip.svg" className="trip-image"></img>
-          )}
+          ) : trip.id && checked ? (
+            <img src="../public/check.svg" className="trip-image"></img>
+          ) : null}
           {trip.location && (
             <img src="../public/layover.svg" className="trip-image"></img>
           )}

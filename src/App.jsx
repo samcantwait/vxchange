@@ -4,26 +4,46 @@ import InfoBar from "./header/InfoBar";
 import NavigationBar from "./header/NavigationBar";
 import { trips } from "./Trips";
 import Trips from "./trips/Trips";
+import { tripPool } from "./tripPool";
 
 function App() {
   const [allTrips, setAllTrips] = useState(trips);
+  const [tripScreen, setTripScreen] = useState("roster");
+  const [availTrips, setAvailTrips] = useState(tripPool);
 
   function handleSelectTrip(trip) {
     const isSelected = trip?.selected === true;
-    setAllTrips((t) =>
-      t.map((i) =>
-        i.id === trip?.id
-          ? { ...i, selected: !isSelected }
-          : { ...i, selected: false }
-      )
-    );
+    if (tripScreen === "pool") {
+      setAvailTrips((t) =>
+        t.map((i) =>
+          i.id === trip?.id
+            ? { ...i, selected: !isSelected }
+            : { ...i, selected: false }
+        )
+      );
+    } else
+      setAllTrips((t) =>
+        t.map((i) =>
+          i.id === trip?.id
+            ? { ...i, selected: !isSelected }
+            : { ...i, selected: false }
+        )
+      );
+  }
+
+  function handleChangeView(view) {
+    setTripScreen(view);
+  }
+
+  function handleChangeTrip(trips) {
+    console.log("in the handle change function", trips);
   }
 
   return (
     <div className="content-wrapper">
       <header>
         <InfoBar tfp={73.2} />
-        <NavigationBar />
+        <NavigationBar onChangeView={handleChangeView} />
       </header>
       <main className="main-content">
         <div className="aside-wrapper">
@@ -33,7 +53,13 @@ function App() {
         </div>
         <div className="main-wrapper">
           <div className="main">
-            <Trips allTrips={allTrips} onSelectTrip={handleSelectTrip} />
+            <Trips
+              allTrips={allTrips}
+              onSelectTrip={handleSelectTrip}
+              tripScreen={tripScreen}
+              availTrips={availTrips}
+              onChangeTrip={handleChangeTrip}
+            />
           </div>
         </div>
       </main>

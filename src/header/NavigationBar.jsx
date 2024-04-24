@@ -1,10 +1,10 @@
 import "./NavigationBar.css";
 
-export default function NavigationBar() {
+export default function NavigationBar({ onChangeView }) {
   return (
     <nav>
-      <div>1</div>
-      <div>2</div>
+      <div onClick={() => onChangeView("roster")}>1</div>
+      <div onClick={() => onChangeView("pool")}>2</div>
       <div>3</div>
     </nav>
   );

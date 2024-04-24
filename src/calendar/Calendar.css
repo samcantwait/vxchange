@@ -70,7 +70,8 @@ tr {
   padding: 1.2px 1.8px 1.2px;
 }
 
-#selected {
+#selected,
+.selected {
   background-color: rgb(181, 181, 207);
 }
 

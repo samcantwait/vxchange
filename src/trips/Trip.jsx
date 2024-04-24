@@ -1,7 +1,7 @@
 import "./Trip.css";
 import TripDetails from "./TripDetails";
 
-export default function Trip({ trip, selectTrip }) {
+export default function Trip({ trip, selectTrip, changeTrip }) {
   const tripArr = Array(13);
   for (let i = 0; i < tripArr.length; i++) {
     tripArr[i] = Array(32);
@@ -28,7 +28,11 @@ export default function Trip({ trip, selectTrip }) {
       className={trip.selected ? "trip trip-selected" : "trip"}
       onClick={() => selectTrip(trip)}
     >
-      <TripDetails trip={trip} key={crypto.randomUUID()} />
+      <TripDetails
+        trip={trip}
+        key={crypto.randomUUID()}
+        changeTrip={changeTrip}
+      />
       <div className="trip-bar">
         <span>CR/TFP {trip.creditTFP}</span>
         <span>FAR block time {trip.blockFAR}h</span>
@@ -37,7 +41,7 @@ export default function Trip({ trip, selectTrip }) {
         <div className="trip-expanded" key={crypto.randomUUID()}>
           {flatArr.map((flight) => (
             <div className="flights" key={crypto.randomUUID()}>
-              <TripDetails trip={flight} />
+              <TripDetails trip={flight} changeTrip={changeTrip} />
             </div>
           ))}
         </div>

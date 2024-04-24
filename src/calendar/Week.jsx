@@ -30,15 +30,23 @@ export default function Week({ week, curMonth, selectTrip }) {
 
         const thisMonth = today.month === curMonth.getMonth() + 1;
 
-        const startLayover = curTrip?.layovers.filter(
+        let startLayover = curTrip?.layovers.filter(
           (layover) => layover.startDate === todayString
         );
+
+        if (!startLayover?.length && isNextTrip) {
+          startLayover = curTrip?.nextTrip?.layovers.filter(
+            (layover) => layover.startDate === todayString
+          );
+        }
+
+        if (curTrip?.selected) console.log(curTrip);
+
         const endLayover = curTrip?.layovers.filter(
           (layover) => layover.endDate === todayString
         );
         const startRest = curTrip?.restEnd.startDate === todayString;
         const endRest = curTrip?.restEnd.endDate === todayString;
-        console.log(curTrip?.restEnd.endDate, todayString, today);
 
         function getPercentage(time) {
           const [hours, minutes] = time.split(":");
@@ -81,7 +89,9 @@ export default function Week({ week, curMonth, selectTrip }) {
               curTrip?.nextTrip?.startDate === todayString
                 ? "selected"
                 : ""
-            } ${today.month !== curMonth.getMonth() + 1 ? "no-borders" : ""}`}
+            } ${curTrip?.selected && !isTripEnded ? "selected" : ""} ${
+              today.month !== curMonth.getMonth() + 1 ? "no-borders" : ""
+            }`}
             id={`${curTrip?.selected && !isTripEnded ? "selected" : ""}`}
             key={crypto.randomUUID()}
             dataset={`${today.month}-${today.number}`}
