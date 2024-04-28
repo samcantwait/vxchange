@@ -1,6 +1,6 @@
 const monthNow = new Date().getMonth() + 1;
 
-const trips = [
+const assignedTrips = [
   {
     id: 45177,
     startDate: `${monthNow}-01-2024`,
@@ -428,7 +428,7 @@ const trips = [
   },
 ];
 
-trips.sort((a, b) => {
+assignedTrips.sort((a, b) => {
   const aDate = parseInt(a.startDate.replaceAll("-", ""));
   const bDate = parseInt(b.startDate.replaceAll("-", ""));
   if (aDate !== bDate) return aDate - bDate;
@@ -438,4 +438,4 @@ trips.sort((a, b) => {
     );
 });
 
-export { trips };
+export { assignedTrips };

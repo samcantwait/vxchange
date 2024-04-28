@@ -1,23 +1,22 @@
 import Trip from "./Trip";
 
 export default function Trips({
-  allTrips,
+  rosterTrips,
   onSelectTrip,
   tripScreen,
-  onChangeView,
   availTrips,
-  onChangeTrip,
+  heldTrips,
 }) {
   return (
     <div className="trips-wrapper">
       {tripScreen === "roster" &&
-        allTrips.map((trip) => {
+        rosterTrips.map((trip) => {
           return (
             <Trip
               trip={trip}
               key={crypto.randomUUID()}
               selectTrip={onSelectTrip}
-              changeTrip={onChangeTrip}
+              heldTrips={heldTrips}
             />
           );
         })}
@@ -28,7 +27,7 @@ export default function Trips({
               trip={trip}
               key={crypto.randomUUID()}
               selectTrip={onSelectTrip}
-              changeTrip={onChangeTrip}
+              heldTrips={heldTrips}
             />
           );
         })}

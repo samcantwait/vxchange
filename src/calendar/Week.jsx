@@ -40,8 +40,6 @@ export default function Week({ week, curMonth, selectTrip }) {
           );
         }
 
-        if (curTrip?.selected) console.log(curTrip);
-
         const endLayover = curTrip?.layovers.filter(
           (layover) => layover.endDate === todayString
         );

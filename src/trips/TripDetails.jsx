@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export default function TripDetails({ trip, changeTrip }) {
-  const [checked, setChecked] = useState(false);
+export default function TripDetails({ trip, heldTrips }) {
   const [startMonth, startDay] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");
@@ -9,15 +8,9 @@ export default function TripDetails({ trip, changeTrip }) {
     ? trip.endDate.split("-")
     : trip.arrivalDate.split("-");
 
-  function handleClick(e) {
-    if (trip.id) {
-      console.log(e);
-      e.stopPropagation();
-      setChecked((c) => !c);
-
-      changeTrip(trip);
-    }
-  }
+  const checked =
+    heldTrips.roster.indexOf(trip) !== -1 ||
+    heldTrips.pool.indexOf(trip) !== -1;
 
   return (
     <div
@@ -28,20 +21,17 @@ export default function TripDetails({ trip, changeTrip }) {
       }
     >
       <div className="select-wrapper">
-        <div
-          className={trip.location ? "trip-select layover" : "trip-select"}
-          onClick={(e) => handleClick(e)}
-        >
+        <div className={trip.location ? "trip-select layover" : "trip-select"}>
           {trip.id && !checked ? (
-            <img src="../public/trip.svg" className="trip-image"></img>
+            <img src="../trip.svg" className="trip-image"></img>
           ) : trip.id && checked ? (
-            <img src="../public/check.svg" className="trip-image"></img>
+            <img src="../check.svg" className="trip-image"></img>
           ) : null}
           {trip.location && (
-            <img src="../public/layover.svg" className="trip-image"></img>
+            <img src="../layover.svg" className="trip-image"></img>
           )}
           {trip.flightNo && (
-            <img src="../public/flight.svg" className="trip-image"></img>
+            <img src="../flight.svg" className="trip-image"></img>
           )}
         </div>
       </div>
