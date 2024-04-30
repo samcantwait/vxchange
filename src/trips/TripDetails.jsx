@@ -12,6 +12,8 @@ export default function TripDetails({ trip, heldTrips }) {
     heldTrips.roster.indexOf(trip) !== -1 ||
     heldTrips.pool.indexOf(trip) !== -1;
 
+  // console.log(heldTrips.roster.indexOf(trip));
+
   return (
     <div
       className={

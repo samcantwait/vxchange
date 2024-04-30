@@ -1,6 +1,6 @@
 import "./NavigationBar.css";
 
-export default function NavigationBar({ onChangeView }) {
+export default function NavigationBar({ onChangeView, allTrips }) {
   return (
     <nav>
       <div onClick={() => onChangeView("roster")}>1</div>

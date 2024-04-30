@@ -1,33 +1,27 @@
 import Trip from "./Trip";
 
-export default function Trips({
-  rosterTrips,
-  onSelectTrip,
-  tripScreen,
-  availTrips,
-  heldTrips,
-}) {
+export default function Trips({ allTrips, onSelectTrip, tripScreen }) {
   return (
     <div className="trips-wrapper">
       {tripScreen === "roster" &&
-        rosterTrips.map((trip) => {
+        allTrips.rosterTrips.map((trip) => {
           return (
             <Trip
               trip={trip}
               key={crypto.randomUUID()}
               selectTrip={onSelectTrip}
-              heldTrips={heldTrips}
+              heldTrips={allTrips.heldTrips}
             />
           );
         })}
       {tripScreen === "pool" &&
-        availTrips.map((trip) => {
+        allTrips.availTrips.map((trip) => {
           return (
             <Trip
               trip={trip}
               key={crypto.randomUUID()}
               selectTrip={onSelectTrip}
-              heldTrips={heldTrips}
+              heldTrips={allTrips.heldTrips}
             />
           );
         })}

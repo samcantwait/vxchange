@@ -1,7 +1,7 @@
 import "./Calendar.css";
 import Month from "./Month";
 
-export default function Calendar({ rosterTrips, onSelectTrip }) {
+export default function Calendar({ allTrips, onSelectTrip }) {
   const curMonth = new Date();
   const prevMonth = new Date(
     curMonth.getFullYear(),
@@ -13,8 +13,7 @@ export default function Calendar({ rosterTrips, onSelectTrip }) {
     curMonth.getMonth() + 1,
     1
   );
-
-  const tripDates = getTripDates(rosterTrips);
+  const tripDates = getTripDates(allTrips.rosterTrips);
 
   return (
     <>
