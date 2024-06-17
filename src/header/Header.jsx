@@ -1,11 +1,11 @@
 import InfoBar from "./InfoBar";
 import NavigationBar from "./NavigationBar";
 
-export default function Header({ tfp, onChangeView }) {
+export default function Header() {
   return (
     <header>
-      <InfoBar tfp={tfp} />
-      <NavigationBar handleChangeView={onChangeView} />
+      <InfoBar />
+      <NavigationBar />
     </header>
   );
 }

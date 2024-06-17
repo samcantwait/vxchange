@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTrips } from "../contexts/TripsContext";
 
-export default function TripDetails({ trip, heldTrips }) {
+export default function TripDetails({ trip }) {
+  const { heldTrips } = useTrips();
   const [startMonth, startDay] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");

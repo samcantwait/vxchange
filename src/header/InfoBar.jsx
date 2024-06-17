@@ -1,6 +1,8 @@
+import { useTripScreen } from "../contexts/TripScreenContexts";
 import "./InfoBar.css";
 
-export default function InfoBar({ tfp }) {
+export default function InfoBar() {
+  const { tfp } = useTripScreen();
   return (
     <div className="info-wrapper">
       <div className="placeholder">SA</div>

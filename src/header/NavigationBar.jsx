@@ -1,6 +1,8 @@
+import { useTripScreen } from "../contexts/TripScreenContexts";
 import "./NavigationBar.css";
 
-export default function NavigationBar({ handleChangeView }) {
+export default function NavigationBar() {
+  const { handleChangeView } = useTripScreen();
   return (
     <nav>
       <div onClick={() => handleChangeView("roster")}>1</div>

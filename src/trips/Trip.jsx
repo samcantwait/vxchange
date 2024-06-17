@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useTrips } from "../contexts/TripsContext";
 import "./Trip.css";
 import TripDetails from "./TripDetails";
 
-export default function Trip({ trip, selectTrip, heldTrips }) {
+export default function Trip({ trip }) {
+  const { handleSelectTrip } = useTrips();
   const tripArr = Array(13);
   for (let i = 0; i < tripArr.length; i++) {
     tripArr[i] = Array(32);
@@ -28,13 +29,9 @@ export default function Trip({ trip, selectTrip, heldTrips }) {
     // make this a reusable component
     <div
       className={trip.selected ? "trip trip-selected" : "trip"}
-      onClick={(e) => selectTrip(e, trip)} // can i write a function so that it calls a local setFn and then the selectTrip Fn?
+      onClick={(e) => handleSelectTrip(e, trip)} // can i write a function so that it calls a local setFn and then the selectTrip Fn?
     >
-      <TripDetails
-        trip={trip}
-        key={crypto.randomUUID()}
-        heldTrips={heldTrips}
-      />
+      <TripDetails trip={trip} key={crypto.randomUUID()} />
       <div className="trip-bar">
         <span>CR/TFP {trip.creditTFP}</span>
         <span>FAR block time {trip.blockFAR}h</span>
@@ -43,7 +40,7 @@ export default function Trip({ trip, selectTrip, heldTrips }) {
         <div className="trip-expanded" key={crypto.randomUUID()}>
           {flatArr.map((flight) => (
             <div className="flights" key={crypto.randomUUID()}>
-              <TripDetails trip={flight} heldTrips={heldTrips} />
+              <TripDetails trip={flight} />
             </div>
           ))}
         </div>

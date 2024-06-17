@@ -1,7 +1,9 @@
+import { useTrips } from "../contexts/TripsContext";
 import "./Calendar.css";
 import Month from "./Month";
 
-export default function Calendar({ rosterTrips, onSelectTrip }) {
+export default function Calendar() {
+  const { rosterTrips, handleSelectTrip } = useTrips();
   const curMonth = new Date();
   const prevMonth = new Date(
     curMonth.getFullYear(),
@@ -22,17 +24,17 @@ export default function Calendar({ rosterTrips, onSelectTrip }) {
         <Month
           curMonth={prevMonth}
           tripDates={tripDates}
-          selectTrip={onSelectTrip}
+          selectTrip={handleSelectTrip}
         />
         <Month
           curMonth={curMonth}
           tripDates={tripDates}
-          selectTrip={onSelectTrip}
+          selectTrip={handleSelectTrip}
         />
         <Month
           curMonth={nextMonth}
           tripDates={tripDates}
-          selectTrip={onSelectTrip}
+          selectTrip={handleSelectTrip}
         />
       </div>
     </>

@@ -1,19 +1,14 @@
-import { useState } from "react";
-
 import Header from "./header/Header";
 import Main from "./main/Main";
+import { TripScreenProvider } from "./contexts/TripScreenContexts";
 
 function App() {
-  const [tripScreen, setTripScreen] = useState("roster");
-
-  function handleChangeView(view) {
-    setTripScreen(view);
-  }
-
   return (
     <div className="content-wrapper">
-      <Header tfp={73.2} onChangeView={handleChangeView} />
-      <Main tripScreen={tripScreen} />
+      <TripScreenProvider>
+        <Header />
+        <Main />
+      </TripScreenProvider>
     </div>
   );
 }
