@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useTripScreen } from "../contexts/TripScreenContexts";
 import { useTrips } from "../contexts/useTrips";
 
 export default function TripDetails({ trip }) {
   const { heldTrips } = useTrips();
+  const { tripScreen } = useTripScreen();
   const [startMonth, startDay] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");
@@ -10,9 +11,7 @@ export default function TripDetails({ trip }) {
     ? trip.endDate.split("-")
     : trip.arrivalDate.split("-");
 
-  const checked =
-    heldTrips.roster.indexOf(trip) !== -1 ||
-    heldTrips.pool.indexOf(trip) !== -1;
+  const checked = trip?.checked;
 
   return (
     <div

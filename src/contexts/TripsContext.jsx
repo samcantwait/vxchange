@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { assignedTrips } from "../trips";
 import { tripPool } from "../tripPool";
 import { useTripScreen } from "./TripScreenContexts";
+import { flushSync } from "react-dom";
 
 export const TripsContext = createContext();
 
@@ -10,21 +11,44 @@ function TripsProvider({ children }) {
 
   const [rosterTrips, setRosterTrips] = useState(assignedTrips);
   const [availTrips, setAvailTrips] = useState(tripPool);
+  const [heldTrips, setHeldTrips] = useState({
+    roster: [],
+    pool: [],
+  });
+
+  // function handleSetTrips(callback, isSelected, isChecked) {
+  //   callback(t =>  t.map((i) =>
+  //     i.id === trip?.id
+  //       ? { ...i, checked: !isChecked }
+  //       : { ...i, selected: false }
+  //   ))
+  // }
 
   function handleSelectTrip(e, trip) {
     console.log(e);
 
     const isSelected = trip?.selected === true;
+    const isChecked = trip?.checked === true;
+
     if (tripScreen === "pool") {
       if (
         e.target.classList.contains("trip-image") ||
         e.target.classList.contains("trip-select")
       ) {
+        setAvailTrips((t) =>
+          t.map((i) =>
+            i.id === trip?.id
+              ? { ...i, checked: !isChecked }
+              : { ...i, selected: false }
+          )
+        );
         setHeldTrips((t) => {
-          if (heldTrips.pool.indexOf(trip) !== 1) {
+          const found = heldTrips.pool.find((t) => t.id === trip.id);
+          if (found) {
             const filtered = t.pool.filter((s) => s.id !== trip.id);
             return { ...t, pool: [...filtered] };
           } else {
+            trip.checked = true;
             return { ...t, pool: [...t.pool, trip] };
           }
         });
@@ -42,15 +66,22 @@ function TripsProvider({ children }) {
         e.target.classList.contains("trip-image") ||
         e.target.classList.contains("trip-select")
       ) {
+        setRosterTrips((t) =>
+          t.map((i) =>
+            i.id === trip?.id
+              ? { ...i, checked: !isChecked }
+              : { ...i, selected: false }
+          )
+        );
         setHeldTrips((t) => {
-          if (heldTrips.roster.indexOf(trip) !== -1) {
+          const found = heldTrips.roster.find((t) => t.id === trip.id);
+          if (found) {
             const filtered = t.roster.filter((s) => s.id !== trip.id);
             return { ...t, roster: [...filtered] };
-          } else
-            return {
-              ...t,
-              roster: [...t.roster, trip],
-            };
+          } else {
+            trip.checked = true;
+            return { ...t, roster: [...t.roster, trip] };
+          }
         });
       } else {
         setRosterTrips((t) =>
@@ -62,21 +93,41 @@ function TripsProvider({ children }) {
         );
       }
     } else {
-      // make trips selected
-      // setHeldTrips((t) => {
-      //   t.map((i) => {
-      //     return i.id === trip?.id
-      //       ? { ...i, selected: !isSelected }
-      //       : { ...i, selected: false };
-      //   });
-      // });
+      if (
+        e.target.classList.contains("trip-image") ||
+        e.target.classList.contains("trip-select")
+      ) {
+        console.log(heldTrips);
+
+        setHeldTrips((t) =>
+          t.map((i) =>
+            i.id === trip?.id
+              ? { ...i, checked: !isChecked }
+              : { ...i, selected: false }
+          )
+        );
+        setHeldTrips((t) => {
+          const found = heldTrips.roster.find((t) => t.id === trip.id);
+          if (found) {
+            const filtered = t.roster.filter((s) => s.id !== trip.id);
+            return { ...t, roster: [...filtered] };
+          } else {
+            trip.checked = true;
+            return { ...t, roster: [...t.roster, trip] };
+          }
+        });
+      } else {
+        console.log(heldTrips);
+        setHeldTrips((t) =>
+          t.map((i) =>
+            i.id === trip?.id
+              ? { ...i, selected: !isSelected }
+              : { ...i, selected: false }
+          )
+        );
+      }
     }
   }
-
-  const [heldTrips, setHeldTrips] = useState({
-    roster: [],
-    pool: [],
-  });
 
   // function handleHoldTrip() {
   //   // do something with the trip and also call the onSelectTrip function
