@@ -29,7 +29,7 @@ export default function Trip({ trip }) {
     // make this a reusable component
     <div
       className={trip.selected ? "trip trip-selected" : "trip"}
-      onClick={(e) => handleSelectTrip(e, trip)} // can i write a function so that it calls a local setFn and then the selectTrip Fn?
+      onClick={(e) => handleSelectTrip(e, trip)}
     >
       <TripDetails trip={trip} key={crypto.randomUUID()} />
       <div className="trip-bar">

@@ -2,7 +2,6 @@ import { createContext, useState } from "react";
 import { assignedTrips } from "../trips";
 import { tripPool } from "../tripPool";
 import { useTripScreen } from "./TripScreenContexts";
-import { flushSync } from "react-dom";
 
 export const TripsContext = createContext();
 
@@ -16,17 +15,7 @@ function TripsProvider({ children }) {
     pool: [],
   });
 
-  // function handleSetTrips(callback, isSelected, isChecked) {
-  //   callback(t =>  t.map((i) =>
-  //     i.id === trip?.id
-  //       ? { ...i, checked: !isChecked }
-  //       : { ...i, selected: false }
-  //   ))
-  // }
-
   function handleSelectTrip(e, trip) {
-    console.log(e);
-
     const isSelected = trip?.selected === true;
     const isChecked = trip?.checked === true;
 
@@ -48,8 +37,10 @@ function TripsProvider({ children }) {
             const filtered = t.pool.filter((s) => s.id !== trip.id);
             return { ...t, pool: [...filtered] };
           } else {
-            trip.checked = true;
-            return { ...t, pool: [...t.pool, trip] };
+            return {
+              ...t,
+              pool: [...t.pool, { ...trip, checked: true, selected: false }],
+            };
           }
         });
       } else {
@@ -79,8 +70,13 @@ function TripsProvider({ children }) {
             const filtered = t.roster.filter((s) => s.id !== trip.id);
             return { ...t, roster: [...filtered] };
           } else {
-            trip.checked = true;
-            return { ...t, roster: [...t.roster, trip] };
+            return {
+              ...t,
+              roster: [
+                ...t.roster,
+                { ...trip, checked: true, selected: false },
+              ],
+            };
           }
         });
       } else {
@@ -97,34 +93,60 @@ function TripsProvider({ children }) {
         e.target.classList.contains("trip-image") ||
         e.target.classList.contains("trip-select")
       ) {
-        console.log(heldTrips);
+        if (trip.isAssigned) {
+          setRosterTrips((t) =>
+            t.map((i) =>
+              i.id === trip?.id
+                ? { ...i, checked: !isChecked }
+                : { ...i, selected: false }
+            )
+          );
 
-        setHeldTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, checked: !isChecked }
-              : { ...i, selected: false }
-          )
-        );
-        setHeldTrips((t) => {
-          const found = heldTrips.roster.find((t) => t.id === trip.id);
-          if (found) {
-            const filtered = t.roster.filter((s) => s.id !== trip.id);
-            return { ...t, roster: [...filtered] };
-          } else {
-            trip.checked = true;
-            return { ...t, roster: [...t.roster, trip] };
-          }
-        });
+          setHeldTrips((t) => {
+            const found = heldTrips.roster.find((t) => t.id === trip.id);
+            if (found) {
+              const filtered = t.roster.filter((s) => s.id !== trip.id);
+              return { ...t, roster: [...filtered] };
+            } else {
+              trip.checked = true;
+              return { ...t, roster: [...t.roster, trip] };
+            }
+          });
+        } else {
+          setAvailTrips((t) =>
+            t.map((i) =>
+              i.id === trip?.id
+                ? { ...i, checked: !isChecked }
+                : { ...i, selected: false }
+            )
+          );
+          setHeldTrips((t) => {
+            const found = heldTrips.pool.find((t) => t.id === trip.id);
+            if (found) {
+              const filtered = t.pool.filter((s) => s.id !== trip.id);
+              return { ...t, pool: [...filtered] };
+            } else {
+              trip.checked = true;
+              return { ...t, pool: [...t.pool, trip] };
+            }
+          });
+        }
       } else {
-        console.log(heldTrips);
-        setHeldTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, selected: !isSelected }
-              : { ...i, selected: false }
-          )
-        );
+        if (trip.isAssigned) {
+          setHeldTrips((t) => {
+            const newRoster = t.roster.map((i) =>
+              i.id === trip.id ? { ...i, selected: !isSelected } : { ...i }
+            );
+            return { roster: newRoster, pool: t.pool };
+          });
+        } else {
+          setHeldTrips((t) => {
+            const newPool = t.pool.map((i) =>
+              i.id === trip.id ? { ...i, selected: !isSelected } : { ...i }
+            );
+            return { roster: t.roster, pool: newPool };
+          });
+        }
       }
     }
   }

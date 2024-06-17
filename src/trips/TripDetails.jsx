@@ -1,9 +1,4 @@
-import { useTripScreen } from "../contexts/TripScreenContexts";
-import { useTrips } from "../contexts/useTrips";
-
 export default function TripDetails({ trip }) {
-  const { heldTrips } = useTrips();
-  const { tripScreen } = useTripScreen();
   const [startMonth, startDay] = trip.startDate
     ? trip.startDate.split("-")
     : trip.departureDate.split("-");
@@ -14,13 +9,7 @@ export default function TripDetails({ trip }) {
   const checked = trip?.checked;
 
   return (
-    <div
-      className={
-        trip.flightNo || trip.location
-          ? "trip-wrapper expanded"
-          : "trip-wrapper"
-      }
-    >
+    <div className="trip-wrapper">
       <div className="select-wrapper">
         <div className={trip.location ? "trip-select layover" : "trip-select"}>
           {trip.id && !checked ? (
@@ -75,7 +64,7 @@ export default function TripDetails({ trip }) {
               <div className="trip-details">
                 <div className="trip-label">Layovers</div>
                 <div className="layovers">
-                  {trip.layovers?.map((layover, index) => (
+                  {trip.layovers?.map((layover) => (
                     <div key={crypto.randomUUID()}>
                       <div>{layover.location}</div>
                       <div className="layover-duration">

@@ -12,6 +12,8 @@ const assignedTrips = [
     blockFAR: "06:29",
     TAFB: "08:51",
     totalDuty: "08:51",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 843,
@@ -56,6 +58,8 @@ const assignedTrips = [
     blockFAR: "08:33",
     TAFB: "28:03",
     totalDuty: "12:28",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -119,6 +123,8 @@ const assignedTrips = [
     blockFAR: "11:09",
     TAFB: "28:12",
     totalDuty: "13:24",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -172,6 +178,8 @@ const assignedTrips = [
     blockFAR: "11:21",
     TAFB: "37:36",
     totalDuty: "13:36",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -225,6 +233,8 @@ const assignedTrips = [
     blockFAR: "12:08",
     TAFB: "37:35",
     totalDuty: "14:23",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -278,6 +288,8 @@ const assignedTrips = [
     blockFAR: "09:22",
     TAFB: "29:57",
     totalDuty: "11:37",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -331,6 +343,8 @@ const assignedTrips = [
     blockFAR: "11:14",
     TAFB: "37:29",
     totalDuty: "13:29",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,
@@ -384,6 +398,8 @@ const assignedTrips = [
     blockFAR: "12:13",
     TAFB: "32:16",
     totalDuty: "34:41",
+
+    isAssigned: true,
     flights: [
       {
         flightNo: 12345,

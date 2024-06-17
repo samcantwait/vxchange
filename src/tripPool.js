@@ -12,6 +12,7 @@ const tripPool = [
     blockFAR: "06:29",
     TAFB: "08:51",
     totalDuty: "08:51",
+    isAssigned: false,
     flights: [
       {
         flightNo: 843,
@@ -56,6 +57,7 @@ const tripPool = [
     blockFAR: "03:21",
     TAFB: "05:31",
     totalDuty: "05:31",
+    isAssigned: false,
     flights: [
       {
         flightNo: 438,
@@ -100,6 +102,7 @@ const tripPool = [
     blockFAR: "04:29",
     TAFB: "06:44",
     totalDuty: "06:44",
+    isAssigned: false,
     flights: [
       {
         flightNo: 487,
@@ -144,6 +147,7 @@ const tripPool = [
     blockFAR: "03:31",
     TAFB: "06:25",
     totalDuty: "06:25",
+    isAssigned: false,
     flights: [
       {
         flightNo: 764,
@@ -188,6 +192,7 @@ const tripPool = [
     blockFAR: "05:47",
     TAFB: "09:09",
     totalDuty: "09:09",
+    isAssigned: false,
     flights: [
       {
         flightNo: 134,
@@ -242,6 +247,7 @@ const tripPool = [
     blockFAR: "10:35",
     TAFB: "32:16",
     totalDuty: "17:56",
+    isAssigned: false,
     flights: [
       {
         flightNo: 98,
@@ -355,6 +361,7 @@ const tripPool = [
     blockFAR: "09:22",
     TAFB: "34:52",
     totalDuty: "10:22",
+    isAssigned: false,
     flights: [
       {
         flightNo: 36,
