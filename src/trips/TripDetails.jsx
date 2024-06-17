@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTrips } from "../contexts/TripsContext";
+import { useTrips } from "../contexts/useTrips";
 
 export default function TripDetails({ trip }) {
   const { heldTrips } = useTrips();

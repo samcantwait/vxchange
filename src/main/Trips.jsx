@@ -1,5 +1,5 @@
 import { useTripScreen } from "../contexts/TripScreenContexts";
-import { useTrips } from "../contexts/TripsContext";
+import { useTrips } from "../contexts/useTrips";
 import Trip from "../trips/Trip";
 
 export default function Trips() {

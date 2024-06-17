@@ -1,4 +1,4 @@
-import { useTrips } from "../contexts/TripsContext";
+import { useTrips } from "../contexts/useTrips";
 import "./Trip.css";
 import TripDetails from "./TripDetails";
 
