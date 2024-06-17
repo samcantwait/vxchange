@@ -39,9 +39,9 @@ const assignedTrips = [
     layovers: [],
     restEnd: {
       startDate: `${monthNow}-01-2024`,
-      endDate: `${monthNow}-01-2024`,
+      endDate: `${monthNow}-02-2024`,
       startTime: "16:09",
-      endTime: "00:09",
+      endTime: "02:09",
     },
     selected: false,
     position: "FA",

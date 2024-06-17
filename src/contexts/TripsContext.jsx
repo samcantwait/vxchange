@@ -5,6 +5,13 @@ import { useTripScreen } from "./TripScreenContexts";
 
 export const TripsContext = createContext();
 
+// Function which takes the current state(arr) and updates it based on the inputed prop and boolean
+function changeTrips(arr, trip, prop, propBool) {
+  return arr.map((i) =>
+    i.id === trip.id ? { ...i, [prop]: !propBool } : { ...i, selected: false }
+  );
+}
+
 function TripsProvider({ children }) {
   const { tripScreen } = useTripScreen();
 
@@ -15,6 +22,25 @@ function TripsProvider({ children }) {
     pool: [],
   });
 
+  function changeHeldTrips(arr, trip, prop) {
+    const found = heldTrips[prop].find((t) => t.id === trip.id);
+    if (found) {
+      const filtered = arr[prop].filter((s) => s.id !== trip.id);
+      return { ...arr, [prop]: [...filtered] };
+    } else {
+      return {
+        ...arr,
+        [prop]: [...arr[prop], { ...trip, checked: true, selected: false }],
+      };
+    }
+  }
+
+  function handleSelectCalendarTrip(trip) {
+    console.log(trip);
+    const isSelected = trip.selected === true;
+    setRosterTrips((t) => changeTrips(t, trip, "selected", isSelected));
+  }
+
   function handleSelectTrip(e, trip) {
     const isSelected = trip?.selected === true;
     const isChecked = trip?.checked === true;
@@ -24,69 +50,20 @@ function TripsProvider({ children }) {
         e.target.classList.contains("trip-image") ||
         e.target.classList.contains("trip-select")
       ) {
-        setAvailTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, checked: !isChecked }
-              : { ...i, selected: false }
-          )
-        );
-        setHeldTrips((t) => {
-          const found = heldTrips.pool.find((t) => t.id === trip.id);
-          if (found) {
-            const filtered = t.pool.filter((s) => s.id !== trip.id);
-            return { ...t, pool: [...filtered] };
-          } else {
-            return {
-              ...t,
-              pool: [...t.pool, { ...trip, checked: true, selected: false }],
-            };
-          }
-        });
+        setAvailTrips((t) => changeTrips(t, trip, "checked", isChecked));
+        setHeldTrips((t) => changeHeldTrips(t, trip, "pool"));
       } else {
-        setAvailTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, selected: !isSelected }
-              : { ...i, selected: false }
-          )
-        );
+        setAvailTrips((t) => changeTrips(t, trip, "selected", isSelected));
       }
     } else if (tripScreen === "roster") {
       if (
         e.target.classList.contains("trip-image") ||
         e.target.classList.contains("trip-select")
       ) {
-        setRosterTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, checked: !isChecked }
-              : { ...i, selected: false }
-          )
-        );
-        setHeldTrips((t) => {
-          const found = heldTrips.roster.find((t) => t.id === trip.id);
-          if (found) {
-            const filtered = t.roster.filter((s) => s.id !== trip.id);
-            return { ...t, roster: [...filtered] };
-          } else {
-            return {
-              ...t,
-              roster: [
-                ...t.roster,
-                { ...trip, checked: true, selected: false },
-              ],
-            };
-          }
-        });
+        setRosterTrips((t) => changeTrips(t, trip, "checked", isChecked));
+        setHeldTrips((t) => changeHeldTrips(t, trip, "roster"));
       } else {
-        setRosterTrips((t) =>
-          t.map((i) =>
-            i.id === trip?.id
-              ? { ...i, selected: !isSelected }
-              : { ...i, selected: false }
-          )
-        );
+        setRosterTrips((t) => changeTrips(t, trip, "selected", isSelected));
       }
     } else {
       if (
@@ -94,42 +71,12 @@ function TripsProvider({ children }) {
         e.target.classList.contains("trip-select")
       ) {
         if (trip.isAssigned) {
-          setRosterTrips((t) =>
-            t.map((i) =>
-              i.id === trip?.id
-                ? { ...i, checked: !isChecked }
-                : { ...i, selected: false }
-            )
-          );
+          setRosterTrips((t) => changeTrips(t, trip, "checked", isChecked));
 
-          setHeldTrips((t) => {
-            const found = heldTrips.roster.find((t) => t.id === trip.id);
-            if (found) {
-              const filtered = t.roster.filter((s) => s.id !== trip.id);
-              return { ...t, roster: [...filtered] };
-            } else {
-              trip.checked = true;
-              return { ...t, roster: [...t.roster, trip] };
-            }
-          });
+          setHeldTrips((t) => changeHeldTrips(t, trip, "roster"));
         } else {
-          setAvailTrips((t) =>
-            t.map((i) =>
-              i.id === trip?.id
-                ? { ...i, checked: !isChecked }
-                : { ...i, selected: false }
-            )
-          );
-          setHeldTrips((t) => {
-            const found = heldTrips.pool.find((t) => t.id === trip.id);
-            if (found) {
-              const filtered = t.pool.filter((s) => s.id !== trip.id);
-              return { ...t, pool: [...filtered] };
-            } else {
-              trip.checked = true;
-              return { ...t, pool: [...t.pool, trip] };
-            }
-          });
+          setAvailTrips((t) => changeTrips(t, trip, "checked", isChecked));
+          setHeldTrips((t) => changeHeldTrips(t, trip, "pool"));
         }
       } else {
         if (trip.isAssigned) {
@@ -157,7 +104,13 @@ function TripsProvider({ children }) {
 
   return (
     <TripsContext.Provider
-      value={{ rosterTrips, handleSelectTrip, heldTrips, availTrips }}
+      value={{
+        rosterTrips,
+        handleSelectCalendarTrip,
+        handleSelectTrip,
+        heldTrips,
+        availTrips,
+      }}
     >
       {children}
     </TripsContext.Provider>

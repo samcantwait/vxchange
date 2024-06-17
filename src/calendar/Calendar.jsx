@@ -3,7 +3,7 @@ import "./Calendar.css";
 import Month from "./Month";
 
 export default function Calendar() {
-  const { rosterTrips, handleSelectTrip } = useTrips();
+  const { rosterTrips } = useTrips();
   const curMonth = new Date();
   const prevMonth = new Date(
     curMonth.getFullYear(),
@@ -21,21 +21,9 @@ export default function Calendar() {
   return (
     <>
       <div className="calendar">
-        <Month
-          curMonth={prevMonth}
-          tripDates={tripDates}
-          selectTrip={handleSelectTrip}
-        />
-        <Month
-          curMonth={curMonth}
-          tripDates={tripDates}
-          selectTrip={handleSelectTrip}
-        />
-        <Month
-          curMonth={nextMonth}
-          tripDates={tripDates}
-          selectTrip={handleSelectTrip}
-        />
+        <Month curMonth={prevMonth} tripDates={tripDates} />
+        <Month curMonth={curMonth} tripDates={tripDates} />
+        <Month curMonth={nextMonth} tripDates={tripDates} />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import Week from "./Week";
 
-export default function CalendarDays({ curMonth, tripDates, selectTrip }) {
+export default function CalendarDays({ curMonth, tripDates }) {
   let firstDayOfMonth = new Date(
     curMonth.getFullYear(),
     curMonth.getMonth(),
@@ -61,15 +61,10 @@ export default function CalendarDays({ curMonth, tripDates, selectTrip }) {
   return (
     <>
       {/* Map each week into a new row on the table. */}
-      {rows.map((week, index) => {
+      {rows.map((week) => {
         return (
           <tr key={crypto.randomUUID()}>
-            <Week
-              week={week}
-              key={crypto.randomUUID()}
-              curMonth={curMonth}
-              selectTrip={selectTrip}
-            />
+            <Week week={week} key={crypto.randomUUID()} curMonth={curMonth} />
           </tr>
         );
       })}

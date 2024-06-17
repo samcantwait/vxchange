@@ -1,7 +1,6 @@
-import { useState } from "react";
 import CalendarDays from "./CalendarDays";
 
-export default function Month({ curMonth, tripDates, selectTrip }) {
+export default function Month({ curMonth, tripDates }) {
   return (
     <table className="calendar-body">
       <thead>
@@ -15,7 +14,7 @@ export default function Month({ curMonth, tripDates, selectTrip }) {
       </thead>
       <tbody>
         <tr className="table-header">
-          {days.map((day, index) => {
+          {days.map((day) => {
             return (
               <th scope="col" className="weekday" key={crypto.randomUUID()}>
                 <p>{day}</p>
@@ -23,11 +22,7 @@ export default function Month({ curMonth, tripDates, selectTrip }) {
             );
           })}
         </tr>
-        <CalendarDays
-          curMonth={curMonth}
-          tripDates={tripDates}
-          selectTrip={selectTrip}
-        />
+        <CalendarDays curMonth={curMonth} tripDates={tripDates} />
       </tbody>
     </table>
   );

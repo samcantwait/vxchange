@@ -1,9 +1,13 @@
-export default function Week({ week, curMonth, selectTrip }) {
+import { useTrips } from "../contexts/useTrips";
+
+export default function Week({ week, curMonth }) {
+  const { handleSelectCalendarTrip } = useTrips();
+
   //Look for nextTrip object within trip object and do stuff.
   return (
     <>
       {/* Fill each week with the individual days. */}
-      {week.map((today, index) => {
+      {week.map((today) => {
         const curTrip = today.trip;
         const todayString = `${today.month}-${
           today.number < 10 ? `0${today.number}` : today.number
@@ -92,11 +96,12 @@ export default function Week({ week, curMonth, selectTrip }) {
             }`}
             id={`${curTrip?.selected && !isTripEnded ? "selected" : ""}`}
             key={crypto.randomUUID()}
-            dataset={`${today.month}-${today.number}`}
+            // dataset={`${today.month}-${today.number}`}
             onClick={() => {
               if (isTripEnded && curTrip?.nextTrip)
-                return selectTrip(curTrip.nextTrip);
-              else return selectTrip(curTrip);
+                return handleSelectCalendarTrip(curTrip.nextTrip);
+              else if (curTrip) return handleSelectCalendarTrip(curTrip);
+              else return;
             }}
           >
             <p>{thisMonth && today.number}</p>
