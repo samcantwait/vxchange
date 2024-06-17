@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Trip.css";
 import TripDetails from "./TripDetails";
 
@@ -24,9 +25,10 @@ export default function Trip({ trip, selectTrip, heldTrips }) {
   const flatArr = tripArr.flat().flat();
 
   return (
+    // make this a reusable component
     <div
       className={trip.selected ? "trip trip-selected" : "trip"}
-      onClick={(e) => selectTrip(e, trip)}
+      onClick={(e) => selectTrip(e, trip)} // can i write a function so that it calls a local setFn and then the selectTrip Fn?
     >
       <TripDetails
         trip={trip}
