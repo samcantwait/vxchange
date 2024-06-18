@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
-import { assignedTrips } from "../trips";
-import { tripPool } from "../tripPool";
-import { useTripScreen } from "./TripScreenContexts";
+import { assignedTrips } from "../../trips";
+import { tripPool } from "../../tripPool";
+import { useTripScreen } from "../TripScreen/useTripScreen";
 
 export const TripsContext = createContext();
 
@@ -98,9 +98,26 @@ function TripsProvider({ children }) {
     }
   }
 
-  // function handleHoldTrip() {
-  //   // do something with the trip and also call the onSelectTrip function
-  // }
+  function handleChangeTrip(option, crew) {
+    // do something with the trip and also call the onSelectTrip function
+    //Use useReducer here!
+    if (option === "Swap") {
+      const rosterTrip = heldTrips.roster[0];
+      const poolTrip = heldTrips.pool[0];
+
+      setRosterTrips((t) => {
+        const newRoster = t.filter((i) => i.id !== rosterTrip.id);
+        return [...newRoster, poolTrip];
+      });
+      console.log(rosterTrip, poolTrip, crew);
+
+      setHeldTrips({ roster: [], pool: [] });
+
+      // adds to the end of array, need to sort?
+    }
+
+    // console.log(option, crew);
+  }
 
   return (
     <TripsContext.Provider
@@ -108,6 +125,7 @@ function TripsProvider({ children }) {
         rosterTrips,
         handleSelectCalendarTrip,
         handleSelectTrip,
+        handleChangeTrip,
         heldTrips,
         availTrips,
       }}

@@ -1,7 +1,6 @@
-import Calendar from "../calendar/Calendar";
-
-import { TripsProvider } from "../contexts/TripsContext";
-import Trips from "./Trips";
+import { TripsProvider } from "../../contexts/Trips/TripsContext";
+import Calendar from "../../calendar/Calendar";
+import Trips from "../trips/Trips";
 
 export default function Main() {
   return (

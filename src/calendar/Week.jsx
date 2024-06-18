@@ -1,4 +1,4 @@
-import { useTrips } from "../contexts/useTrips";
+import { useTrips } from "../contexts/Trips/useTrips";
 
 export default function Week({ week, curMonth }) {
   const { handleSelectCalendarTrip } = useTrips();

@@ -1,4 +1,4 @@
-import { useTrips } from "../contexts/useTrips";
+import { useTrips } from "../contexts/Trips/useTrips";
 import "./Calendar.css";
 import Month from "./Month";
 

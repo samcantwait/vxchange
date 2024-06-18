@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const TripScreenContext = createContext();
 
@@ -23,11 +23,4 @@ function TripScreenProvider({ children }) {
   );
 }
 
-function useTripScreen() {
-  const context = useContext(TripScreenContext);
-  if (context === undefined)
-    throw new Error("TripScreenContext was used outside TripScreenProvider");
-  return context;
-}
-
-export { TripScreenProvider, useTripScreen };
+export { TripScreenProvider, TripScreenContext };

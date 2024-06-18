@@ -1,12 +1,16 @@
-import Header from "./header/Header";
-import Main from "./main/Main";
-import { TripScreenProvider } from "./contexts/TripScreenContexts";
+import { TripScreenProvider } from "./contexts/TripScreen/TripScreenContext";
+import Main from "./pages/main/Main";
+import InfoBar from "./components/InfoBar/InfoBar";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 function App() {
   return (
     <div className="content-wrapper">
       <TripScreenProvider>
-        <Header />
+        <header>
+          <InfoBar />
+          <NavigationBar />
+        </header>
         <Main />
       </TripScreenProvider>
     </div>

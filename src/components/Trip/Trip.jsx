@@ -1,14 +1,16 @@
-import { useTrips } from "../contexts/useTrips";
+import TripBar from "./TripBar/TripBar";
+import { useTrips } from "../../contexts/Trips/useTrips";
 import "./Trip.css";
-import TripDetails from "./TripDetails";
+import TripWrapper from "./TripWrapper/TripWrapper";
 
-export default function Trip({ trip }) {
-  const { handleSelectTrip } = useTrips();
+// Create an indexed array to hold the trips
+function createTripArr(trip) {
   const tripArr = Array(13);
   for (let i = 0; i < tripArr.length; i++) {
     tripArr[i] = Array(32);
   }
 
+  // The following functions turn the flight and layover arrays into a single array where each index represents a calendar day.
   trip.flights.forEach((flight) => {
     const [index, day] = flight.departureDate.split("-");
     tripArr[+index][+day] =
@@ -23,24 +25,25 @@ export default function Trip({ trip }) {
         ? [...tripArr[+index][+day], layover]
         : [layover];
   });
-  const flatArr = tripArr.flat().flat();
+  return tripArr.flat().flat();
+}
+
+export default function Trip({ trip }) {
+  const { handleSelectTrip } = useTrips();
+  const flatArr = createTripArr(trip);
 
   return (
-    // make this a reusable component
     <div
       className={trip.selected ? "trip trip-selected" : "trip"}
       onClick={(e) => handleSelectTrip(e, trip)}
     >
-      <TripDetails trip={trip} key={crypto.randomUUID()} />
-      <div className="trip-bar">
-        <span>CR/TFP {trip.creditTFP}</span>
-        <span>FAR block time {trip.blockFAR}h</span>
-      </div>
+      <TripWrapper trip={trip} />
+      <TripBar trip={trip} />
       {trip.selected && (
         <div className="trip-expanded" key={crypto.randomUUID()}>
           {flatArr.map((flight) => (
             <div className="flights" key={crypto.randomUUID()}>
-              <TripDetails trip={flight} />
+              <TripWrapper trip={flight} />
             </div>
           ))}
         </div>

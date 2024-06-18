@@ -1,4 +1,4 @@
-import { useTripScreen } from "../contexts/TripScreenContexts";
+import { useTripScreen } from "../../contexts/TripScreen/useTripScreen";
 import "./InfoBar.css";
 
 export default function InfoBar() {
