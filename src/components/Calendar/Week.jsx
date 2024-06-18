@@ -1,6 +1,6 @@
-import { useTrips } from "../contexts/Trips/useTrips";
+import { useTrips } from "../../contexts/Trips/useTrips";
 
-export default function Week({ week, curMonth }) {
+export function Week({ week, curMonth }) {
   const { handleSelectCalendarTrip } = useTrips();
 
   //Look for nextTrip object within trip object and do stuff.
@@ -96,7 +96,6 @@ export default function Week({ week, curMonth }) {
             }`}
             id={`${curTrip?.selected && !isTripEnded ? "selected" : ""}`}
             key={crypto.randomUUID()}
-            // dataset={`${today.month}-${today.number}`}
             onClick={() => {
               if (isTripEnded && curTrip?.nextTrip)
                 return handleSelectCalendarTrip(curTrip.nextTrip);

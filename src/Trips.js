@@ -455,3 +455,6 @@ assignedTrips.sort((a, b) => {
 });
 
 export { assignedTrips };
+
+// const assignedTripsJSON = JSON.stringify(assignedTrips);
+// console.log(assignedTripsJSON);

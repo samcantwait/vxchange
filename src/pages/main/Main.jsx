@@ -1,5 +1,5 @@
 import { TripsProvider } from "../../contexts/Trips/TripsContext";
-import Calendar from "../../calendar/Calendar";
+import Calendar from "../calendar/CalendarView";
 import Trips from "../trips/Trips";
 
 export default function Main() {

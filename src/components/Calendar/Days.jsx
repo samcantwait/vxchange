@@ -1,6 +1,57 @@
-import Week from "./Week";
+import { useTrips } from "../../contexts/Trips/useTrips";
+import { Week } from "./Week";
 
-export default function CalendarDays({ curMonth, tripDates }) {
+export default function Days({ curMonth }) {
+  const { rosterTrips } = useTrips();
+
+  const tripDates = getTripDates(rosterTrips);
+  const rows = getRows(curMonth, tripDates);
+
+  return (
+    <>
+      {/* Map each week into a new row on the table. */}
+      {rows.map((week) => {
+        return (
+          <tr key={crypto.randomUUID()}>
+            <Week week={week} key={crypto.randomUUID()} curMonth={curMonth} />
+          </tr>
+        );
+      })}
+    </>
+  );
+}
+
+function getTripDates(trips) {
+  const tripDates = Array(13);
+
+  for (let i = 0; i < tripDates.length; i++) {
+    tripDates[i] = Array(32);
+  }
+
+  trips.forEach((trip) => {
+    const [month, day, year] = trip.startDate.split("-");
+    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    const index = Number(month);
+    for (let i = Number(day) + trip.length - 1; i >= Number(day); i--) {
+      if (i > lastDayOfMonth) {
+        if (tripDates[index + 1][i - lastDayOfMonth] === undefined) {
+          tripDates[index + 1][i - lastDayOfMonth] = trip;
+        } else
+          tripDates[index + 1][i - lastDayOfMonth] = tripDates[index + 1][
+            i - lastDayOfMonth
+          ].nextTrip = trip;
+      } else if (tripDates[index][i] === undefined) {
+        tripDates[index][i] = trip;
+      } else tripDates[index][i].nextTrip = trip;
+    }
+    const [endMonth, endDay] = trip.restEnd.endDate.split("-");
+    tripDates[Number(endMonth)][Number(endDay)] = trip;
+  });
+
+  return tripDates;
+}
+
+function getRows(curMonth, tripDates) {
   let firstDayOfMonth = new Date(
     curMonth.getFullYear(),
     curMonth.getMonth(),
@@ -46,8 +97,6 @@ export default function CalendarDays({ curMonth, tripDates }) {
     currentDays.push(calendarDay);
   }
 
-  // console.log(currentDays);
-
   const rows = [];
   // Create a new array that may be mutated.
   const allDays = [...currentDays];
@@ -58,16 +107,5 @@ export default function CalendarDays({ curMonth, tripDates }) {
     rows.push(daysToPush);
   }
 
-  return (
-    <>
-      {/* Map each week into a new row on the table. */}
-      {rows.map((week) => {
-        return (
-          <tr key={crypto.randomUUID()}>
-            <Week week={week} key={crypto.randomUUID()} curMonth={curMonth} />
-          </tr>
-        );
-      })}
-    </>
-  );
+  return rows;
 }

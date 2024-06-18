@@ -1,6 +1,6 @@
-import CalendarDays from "./CalendarDays";
+import Days from "./Days";
 
-export default function Month({ curMonth, tripDates }) {
+export default function Month({ curMonth }) {
   return (
     <table className="calendar-body">
       <thead>
@@ -22,7 +22,7 @@ export default function Month({ curMonth, tripDates }) {
             );
           })}
         </tr>
-        <CalendarDays curMonth={curMonth} tripDates={tripDates} />
+        <Days curMonth={curMonth} />
       </tbody>
     </table>
   );
