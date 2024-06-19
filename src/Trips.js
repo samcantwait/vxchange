@@ -5,7 +5,7 @@ const assignedTrips = [
     id: 45177,
     startDate: `${monthNow}-01-2024`,
     endDate: `${monthNow}-01-2024`,
-    report: "07:15",
+    report: "10:15",
     release: "16:09",
     length: 1,
     creditTFP: 7,

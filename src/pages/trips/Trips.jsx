@@ -16,7 +16,6 @@ export default function Trips() {
             {rosterTrips.map((trip) => {
               return <Trip trip={trip} key={crypto.randomUUID()} />;
             })}{" "}
-            <TripSelect />
           </>
         );
       case "pool":
@@ -25,7 +24,6 @@ export default function Trips() {
             {availTrips.map((trip) => {
               return <Trip trip={trip} key={crypto.randomUUID()} />;
             })}{" "}
-            <TripSelect />
           </>
         );
       case "trade":

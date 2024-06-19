@@ -6,11 +6,11 @@ export default function Main() {
   return (
     <main className="main-content">
       <TripsProvider>
-        <div className="aside-wrapper">
+        <aside className="aside-wrapper">
           <div className="aside">
             <Calendar />
           </div>
-        </div>
+        </aside>
         <Trips />
       </TripsProvider>
     </main>
